@@ -88,5 +88,5 @@ T=end-start
 conv.append(T)
 
 
-with open(os.path.expanduser("~") +  + '/outNTT.txt', 'w') as outNTT:
+with open(os.path.expanduser("~") + '/outNTT.txt', 'w') as outNTT:
     outNTT.writelines("%s\n" % i for i in conv)

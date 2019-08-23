@@ -115,7 +115,7 @@ ntt_RF_Convolve=function(tree,n){
       write(R2aug,"~/testNTT.txt",ncolumns=L,append = TRUE)
 
       #If python script is changed, increment this number.
-      python_ntt_version <- 3
+      python_ntt_version <- 4
 
       #read the output of Python
       current_filename <- paste(".ntt_fromR",paste0(python_ntt_version,sep = ""),".py", sep = "")
