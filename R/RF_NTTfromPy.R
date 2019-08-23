@@ -115,10 +115,10 @@ ntt_RF_Convolve=function(tree,n){
       write(R2aug,"~/testNTT.txt",ncolumns=L,append = TRUE)
 
       #If python script is changed, increment this number.
-      python_ntt_version <- 1
+      python_ntt_version <- 2
 
       #read the output of Python
-      current_filename <- paste(".ntt_fromR",paste0(python_ntt_version),".py", sep = "")
+      current_filename <- paste(".ntt_fromR",paste0(python_ntt_version,sep = ""),".py", sep = "")
       if(length(which(list.files("~",all.files=TRUE) == current_filename)) == 0){
 	      print("ntt_fromR is old, deleted, or was not installed. Installing .ntt_fromR.")
 	      download.file('https://raw.githubusercontent.com/FrankWhoee/rfdistr/master/.ntt_fromR.py', destfile = paste("~/",current_filename, sep = ""), method="curl")
@@ -128,11 +128,16 @@ ntt_RF_Convolve=function(tree,n){
           file.remove(paste("~/",previous_filename, sep = ""))
         }
       }
+      print("ntt_fromR file found. Checking for dependencies...")
 
       if(length(which(grepl("rfdist",system("pip list", intern = TRUE)) == TRUE)) == 0){
 	      print("pip package rfdist was deleted or not installed. Installing rfdist.")
         system('pip install rfdist')
       }
+
+      print("Dependency installed.")
+      print("Attempting to run:")
+      print(current_filename)
       system(paste('python ~/',current_filename, sep = ""))
 
 
